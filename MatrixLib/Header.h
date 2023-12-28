@@ -70,7 +70,7 @@ namespace miit
 		* @param matrix Матрица для вывода
 		* @return Поток вывода с матрицей
 		*/
-		friend std::ostream& operator<<(std::ostream& os, Matrix& matrix) noexcept;
+		std::ostream& operator<<(std::ostream& os, Matrix& matrix) noexcept;
 
 		/**
 		* @brief Перегрузка оператора сравнения двух матриц

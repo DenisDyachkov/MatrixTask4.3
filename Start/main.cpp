@@ -7,6 +7,7 @@ using namespace miit;
 int main() 
 {
 	RandomGen* gen = new RandomGen(2, 22);
+	Matrix matrix323213 = Matrix(gen, 2, 2);
 	Matrix matrix = Matrix({ 1,2,3,4 }, 2, 2);
 	Matrix matrix_1 = Matrix({ 1,2,3,4,5,6 }, 3, 2);
 	std::vector<int> row{ 5, 6 };
