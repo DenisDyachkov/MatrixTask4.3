@@ -1,33 +1,40 @@
-#pragma once
+п»ї#pragma once
 #include "TaskBase.h"
 #include "../MatrixLib/Header.h"
 
 namespace miit
 {
 	/**
-	* @brief Класс задание
+	* @brief РљР»Р°СЃСЃ Р·Р°РґР°РЅРёРµ
 	*/
 	class Task : public BaseTask
 	{
 	private:
 		Matrix matrix;
+		/**
+		* @brief РЈР·РЅР°РµС‚ РµСЃС‚СЊ Р»Рё СЌР»РµРјРµРЅС‚ РІ СЃС‚СЂРѕРєРµ РІ РјР°С‚СЂРёС†Рµ
+		* @param index РРЅРґРµРєСЃ СЃС‚СЂРѕРєРё
+		* @param element Р­Р»РµРјРµРЅС‚ РґРѕСЏ РїРѕРёСЃРєР°
+		* @return РµСЃР»Рё РµСЃС‚СЊ true, РёРЅР°С‡Рµ false
+		*/
+		bool is_value_in_row(size_t index, int element);
 
 	public:
 		/**
-		* @brief Инициализация объекта Task
-		* @param matrix Матрица с которой надо выполнить задания
+		* @brief РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РѕР±СЉРµРєС‚Р° Task
+		* @param matrix РњР°С‚СЂРёС†Р° СЃ РєРѕС‚РѕСЂРѕР№ РЅР°РґРѕ РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°РЅРёСЏ
 		*/
 		Task(Matrix matrix);
 
 		/**
-		* @brief Решение первого задания
-		* @return Матрица выполенного задания
+		* @brief Р РµС€РµРЅРёРµ РїРµСЂРІРѕРіРѕ Р·Р°РґР°РЅРёСЏ
+		* @return РњР°С‚СЂРёС†Р° РІС‹РїРѕР»РµРЅРЅРѕРіРѕ Р·Р°РґР°РЅРёСЏ
 		*/
 		Matrix task_1() override;
 
 		/**
-		* @brief Решение второго задания
-		* @return Матрица выполенного задания
+		* @brief Р РµС€РµРЅРёРµ РІС‚РѕСЂРѕРіРѕ Р·Р°РґР°РЅРёСЏ
+		* @return РњР°С‚СЂРёС†Р° РІС‹РїРѕР»РµРЅРЅРѕРіРѕ Р·Р°РґР°РЅРёСЏ
 		*/
 		Matrix task_2() override;
 	};

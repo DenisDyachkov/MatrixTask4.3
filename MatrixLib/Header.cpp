@@ -1,9 +1,17 @@
 #include "Header.h"
 #include <sstream>
 
-miit::Matrix::Matrix(Generator* gen, size_t rows, size_t columns)
-	:info(std::vector<std::vector<int>> {})
+miit::Matrix::Matrix(Generator* gen, int rows, int columns)
+	:matrix_values(std::vector<std::vector<int>> {})
 {
+	if (rows < 0 || columns < 0 || gen == nullptr) 
+	{
+		throw std::out_of_range("Incorrect matrix params");
+	}
+
+	rows = static_cast<size_t>(rows);
+	columns = static_cast<size_t>(columns);
+
 	for (size_t i = 0; i < rows; i++)
 	{
 		std::vector<int> row{};
@@ -11,18 +19,18 @@ miit::Matrix::Matrix(Generator* gen, size_t rows, size_t columns)
 		{
 			row.push_back(gen->generate());
 		}
-		this->info.push_back(row);
+		this->matrix_values.push_back(row);
 	}
 }
 
-miit::Matrix::Matrix(std::initializer_list<int> info, size_t rows, size_t columns)
-	:info(std::vector<std::vector<int>> {rows})
+miit::Matrix::Matrix(std::initializer_list<int> matrix_values, size_t rows, size_t columns)
+	:matrix_values(std::vector<std::vector<int>> {rows})
 {
 	size_t i = 0;
 	size_t j = 0;
-	for (int item : info)
+	for (int item : matrix_values)
 	{
-		this->info[j].push_back(item);
+		this->matrix_values[j].push_back(item);
 		i++;
 		if (i % columns == 0)
 		{
@@ -32,28 +40,28 @@ miit::Matrix::Matrix(std::initializer_list<int> info, size_t rows, size_t column
 }
 
 miit::Matrix::Matrix()
-	:info(std::vector<std::vector<int>> {}) 
+	:matrix_values(std::vector<std::vector<int>> {}) 
 {
 }
 
 void miit::Matrix::append_row(std::vector<int> element)
 {
-	this->info.push_back(element);
+	this->matrix_values.push_back(element);
 }
 
 size_t miit::Matrix::get_rows() const
 {
-	return info.size();
+	return matrix_values.size();
 }
 
 
 size_t miit::Matrix::get_columns() const
 {
-	if (this->info.size() == 0)
+	if (this->matrix_values.size() == 0)
 	{
 		return 0;
 	}
-	return this->info[0].size();
+	return this->matrix_values[0].size();
 }
 
 int miit::Matrix::get_min_value() const
@@ -63,36 +71,23 @@ int miit::Matrix::get_min_value() const
 	{
 		for (size_t j = 0; j < this->get_columns(); j++)
 		{
-			if (this->info[i][j] <= min) 
+			if (this->matrix_values[i][j] <= min) 
 			{
-				min = info[i][j];
+				min = matrix_values[i][j];
 			}
 		}
 	}
 	return min;
 }
 
-bool miit::Matrix::is_value_in_row(size_t index, int element)
-{
-	
-	for (size_t i = 0; i < this->info[index].size(); i++)
-	{
-		if (this->info[index][i] == element)
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
 const std::vector<int>& miit::Matrix::operator[](size_t index) const
 {
-	return info[index];
+	return matrix_values[index];
 }
 
 const std::vector<int>& miit::Matrix::operator[](size_t index)
 {
-	return info[index];
+	return matrix_values[index];
 }
 
 std::string miit::Matrix::to_string() const noexcept
@@ -102,15 +97,14 @@ std::string miit::Matrix::to_string() const noexcept
 	{
 		for (size_t j = 0; j < this->get_columns(); j++)
 		{
-			buffer << this->info[i][j] << " ";
+			buffer << this->matrix_values[i][j] << " ";
 		}
 		buffer << "\n";
 	}
 	return buffer.str();
-	
 }
 
-std::ostream& miit::operator<<(std::ostream& os, Matrix& matrix) noexcept
+std::ostream& miit::operator<<(std::ostream& os, miit::Matrix& matrix) noexcept
 {
 	return os << matrix.to_string();
 }

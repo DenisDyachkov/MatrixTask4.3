@@ -1,102 +1,95 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 #include <vector>
 #include "Generator.h"
 
 namespace miit 
 {
+	class Matrix;
+	/**
+	* @brief РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° РІС‹РІРѕРґР°
+	* @param os РџРѕС‚РѕРє РІС‹РІРѕРґР°
+	* @param matrix РњР°С‚СЂРёС†Р° РґР»СЏ РІС‹РІРѕРґР°
+	* @return РџРѕС‚РѕРє РІС‹РІРѕРґР° СЃ РјР°С‚СЂРёС†РµР№
+	*/
+	std::ostream& operator<<(std::ostream& os, Matrix& matrix) noexcept;
+
 	class Matrix 
 	{
 	private:
-		std::vector<std::vector<int>> info;
+		std::vector<std::vector<int>> matrix_values;
 
 	public:
 		/**
-		* @brief Создает объект матрицы		
-		* @param gen Генератор для заполнения
-		* @param rows Количество строк
-		* @param columns Количество столбцов
+		* @brief РЎРѕР·РґР°РµС‚ РѕР±СЉРµРєС‚ РјР°С‚СЂРёС†С‹		
+		* @param gen Р“РµРЅРµСЂР°С‚РѕСЂ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ
+		* @param rows РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
+		* @param columns РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ
 		*/
-		Matrix(Generator* gen, size_t rows, size_t columns);
+		Matrix(Generator* gen, int rows, int columns);
 
 		/**
-		* @brief Создает объект матрицы
-		* @param info Информация о данных
-		* @param rows Количество строк
-		* @param columns Количество столбцов
+		* @brief РЎРѕР·РґР°РµС‚ РѕР±СЉРµРєС‚ РјР°С‚СЂРёС†С‹
+		* @param info РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РґР°РЅРЅС‹С…
+		* @param rows РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
+		* @param columns РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ
 		*/
 		Matrix(std::initializer_list<int> info, size_t rows, size_t columns);
 
 		/**
-		* @brief Создает пустой объект матрицы
+		* @brief РЎРѕР·РґР°РµС‚ РїСѓСЃС‚РѕР№ РѕР±СЉРµРєС‚ РјР°С‚СЂРёС†С‹
 		*/
 		Matrix();
 
 		/**
-		* @brief Добавляет в конец матрицы строку
-		* @param element Строка, которая будет добавлена
+		* @brief Р”РѕР±Р°РІР»СЏРµС‚ РІ РєРѕРЅРµС† РјР°С‚СЂРёС†С‹ СЃС‚СЂРѕРєСѓ
+		* @param element РЎС‚СЂРѕРєР°, РєРѕС‚РѕСЂР°СЏ Р±СѓРґРµС‚ РґРѕР±Р°РІР»РµРЅР°
 		*/
 		void append_row(std::vector<int> element);
 
 		/**
-		* @brief Узнает сколько строк в матрице
-		* @return Количество строк в матрице
+		* @brief РЈР·РЅР°РµС‚ СЃРєРѕР»СЊРєРѕ СЃС‚СЂРѕРє РІ РјР°С‚СЂРёС†Рµ
+		* @return РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє РІ РјР°С‚СЂРёС†Рµ
 		*/
 		size_t get_rows() const;
 
 		/**
-		* @brief Узнает сколько столбцов в матрице
-		* @return Количество столбцов в матрице
+		* @brief РЈР·РЅР°РµС‚ СЃРєРѕР»СЊРєРѕ СЃС‚РѕР»Р±С†РѕРІ РІ РјР°С‚СЂРёС†Рµ
+		* @return РљРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ РІ РјР°С‚СЂРёС†Рµ
 		*/
 		size_t get_columns() const;
 
 		/**
-		* @brief Узнает минимальное значение в матрице
-		* @return Минимальное значение в матрице
+		* @brief РЈР·РЅР°РµС‚ РјРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РјР°С‚СЂРёС†Рµ
+		* @return РњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РјР°С‚СЂРёС†Рµ
 		*/
 		int get_min_value() const;
 
 		/**
-		* @brief Узнает есть ли элемент в строке
-		* @param index Индекс строки
-		* @param element Элемент доя поиска
-		* @return если есть true, иначе false
-		*/
-		bool is_value_in_row(size_t index, int element);
-
-		/**
-		* @brief Перегрузка оператора вывода
-		* @param os Поток вывода
-		* @param matrix Матрица для вывода
-		* @return Поток вывода с матрицей
-		*/
-		std::ostream& operator<<(std::ostream& os, Matrix& matrix) noexcept;
-
-		/**
-		* @brief Перегрузка оператора сравнения двух матриц
-		* @param lhs Первая матрица для сравнения
-		* @param rhs Вторая матрица для сравнения
-		* @return если равны true, иначе false
+		* @brief РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° СЃСЂР°РІРЅРµРЅРёСЏ РґРІСѓС… РјР°С‚СЂРёС†
+		* @param lhs РџРµСЂРІР°СЏ РјР°С‚СЂРёС†Р° РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ
+		* @param rhs Р’С‚РѕСЂР°СЏ РјР°С‚СЂРёС†Р° РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ
+		* @return РµСЃР»Рё СЂР°РІРЅС‹ true, РёРЅР°С‡Рµ false
 		*/
 		friend bool operator==(Matrix& lhs, Matrix& rhs) noexcept;
 
 		/**
-		* @brief Перегрузка оператора индекса
-		* @param index Индекс элемента в матрице
-		* @return Элемент под этим индексом
+		* @brief РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° РёРЅРґРµРєСЃР°
+		* @param index РРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р° РІ РјР°С‚СЂРёС†Рµ
+		* @return Р­Р»РµРјРµРЅС‚ РїРѕРґ СЌС‚РёРј РёРЅРґРµРєСЃРѕРј
 		*/
 		const std::vector<int>& operator[](size_t index);
 
 		/**
-		* @brief Перегрузка оператора индекса
-		* @param index Индекс элемента в матрице
-		* @return Элемент под этим индексом
+		* @brief РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° РёРЅРґРµРєСЃР°
+		* @param index РРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р° РІ РјР°С‚СЂРёС†Рµ
+		* @return Р­Р»РµРјРµРЅС‚ РїРѕРґ СЌС‚РёРј РёРЅРґРµРєСЃРѕРј
 		*/
 		const std::vector<int>& operator[](size_t index) const;
 
 		/**
-		* @brief Преобразование матрицы в строку
-		* @return Строка с матрицей
+		* @brief РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РјР°С‚СЂРёС†С‹ РІ СЃС‚СЂРѕРєСѓ
+		* @return РЎС‚СЂРѕРєР° СЃ РјР°С‚СЂРёС†РµР№
 		*/
 		std::string to_string() const noexcept;
 

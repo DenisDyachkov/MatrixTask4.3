@@ -15,7 +15,7 @@ namespace Tests
 		{
 			Matrix matrix = Matrix({ 1,2,3,4 }, 2, 2);
 			Matrix matrix_1 = Matrix({ 1,2,3,4,5,6 }, 3, 2);
-			std::vector<int> row{ 5, 6 };
+			std::vector<int> row{ 5, 6 };	
 			matrix.append_row(row);
 			Assert::IsTrue(matrix_1 == matrix);
 		}
@@ -58,12 +58,5 @@ namespace Tests
 			Matrix matrix = Matrix({ 1,2,3,4 }, 2, 2);
 			Assert::IsTrue(matrix.get_min_value() == 1);
 		}
-
-		TEST_METHOD(MatrixIsValueInRow_ValidData_Success)
-		{
-			Matrix matrix = Matrix({ 1,2,3,4 }, 2, 2);
-			Assert::IsTrue(matrix.is_value_in_row(1, 3) == true);
-		}
-
 	};
 }

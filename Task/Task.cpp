@@ -1,5 +1,17 @@
 #include "Task.h"
 
+bool miit::Task::is_value_in_row(size_t index, int element)
+{
+	for (size_t i = 0; i < this->matrix[index].size(); i++)
+	{
+		if (this->matrix[index][i] == element)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 miit::Task::Task(Matrix matrix)
 	:matrix(matrix)
 {
@@ -39,7 +51,7 @@ miit::Matrix miit::Task::task_2()
 	for (size_t i = 0; i < matrix.get_rows(); i++)
 	{
 		answer.append_row(this->matrix[i]);
-		if (this->matrix.is_value_in_row(i, min)) 
+		if (this->is_value_in_row(i, min))
 		{
 			answer.append_row(row);
 		}
