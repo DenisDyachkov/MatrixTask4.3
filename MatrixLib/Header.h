@@ -29,19 +29,6 @@ namespace miit
 		Matrix(Generator* gen, int rows, int columns);
 
 		/**
-		* @brief Создает объект матрицы
-		* @param info Информация о данных
-		* @param rows Количество строк
-		* @param columns Количество столбцов
-		*/
-		Matrix(std::initializer_list<int> info, size_t rows, size_t columns);
-
-		/**
-		* @brief Создает пустой объект матрицы
-		*/
-		Matrix();
-
-		/**
 		* @brief Добавляет в конец матрицы строку
 		* @param element Строка, которая будет добавлена
 		*/

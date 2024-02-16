@@ -23,27 +23,6 @@ miit::Matrix::Matrix(Generator* gen, int rows, int columns)
 	}
 }
 
-miit::Matrix::Matrix(std::initializer_list<int> matrix_values, size_t rows, size_t columns)
-	:matrix_values(std::vector<std::vector<int>> {rows})
-{
-	size_t i = 0;
-	size_t j = 0;
-	for (int item : matrix_values)
-	{
-		this->matrix_values[j].push_back(item);
-		i++;
-		if (i % columns == 0)
-		{
-			j++;
-		}
-	}
-}
-
-miit::Matrix::Matrix()
-	:matrix_values(std::vector<std::vector<int>> {}) 
-{
-}
-
 void miit::Matrix::append_row(std::vector<int> element)
 {
 	this->matrix_values.push_back(element);
