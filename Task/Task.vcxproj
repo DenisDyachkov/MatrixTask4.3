@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{351cc578-eb32-4d7e-a75e-7fa1c5cbea8e}</ProjectGuid>
-    <RootNamespace>MatrixLib</RootNamespace>
+    <ProjectGuid>{02fa2829-015b-4234-bbae-23a3eeb185f2}</ProjectGuid>
+    <RootNamespace>Task</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -128,15 +128,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Generator.h" />
-    <ClInclude Include="Header.h" />
-    <ClInclude Include="IStreamGen.h" />
-    <ClInclude Include="RandomGen.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="TaskBase.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Header.cpp" />
-    <ClCompile Include="IStreamGen.cpp" />
-    <ClCompile Include="RandomGen.cpp" />
+    <ClCompile Include="Task.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MatrixLib\MatrixLib.vcxproj">
+      <Project>{351cc578-eb32-4d7e-a75e-7fa1c5cbea8e}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
